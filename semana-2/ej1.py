@@ -11,4 +11,5 @@ edad = 19
 altura = 1.76
 es_estudiante = True
 
-print("hola mundo")
+print(f"Hola, soy {nombre} y tengo {edad} años. Mido {altura} de altura-")
+print(es_estudiante)
