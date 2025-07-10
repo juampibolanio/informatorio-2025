@@ -5,3 +5,12 @@ Instrucciones:
    desde el 5 hasta el 1 y que al final imprima "¡Despegue! 🚀".
 
 """
+
+for i in range(1, 11):
+   print(i);
+
+
+for i in range(5, 0, -1):
+   print(i)
+
+print("DESPEGUE!")
