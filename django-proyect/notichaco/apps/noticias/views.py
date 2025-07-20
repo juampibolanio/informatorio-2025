@@ -26,9 +26,39 @@ def crear_noticia(request):
     print(nueva_noticia.autor)
 
     return render(request, 'nueva_noticia.html')
+
 #UPDATE
 
+def modificar_noticia(request):
+
+    noticia_actual = Noticia.objects.filter(titulo = "Noticia en clase 1").first()
+
+    noticia_actual.titulo = "Noticia MODIFICADA"
+    noticia_actual.subtitulo = "Subtitulo modificado"
+    noticia_actual.contenido = "CONTENIDO DE LA NOTICIA MODIFICADO"
+
+    noticia_actual.save()
+
+    print("=========================")
+    print(noticia_actual.titulo)
+    print(noticia_actual.subtitulo)
+    print(noticia_actual.contenido)
+    print(noticia_actual.autor)
+    print("=========================")
+
+
+    return render(request, 'modificar_noticia.html')
+        
+
 #DELETE
+def eliminar_noticia(request):
+
+    noticia = Noticia.objects.get(noticia_id = 3)
+    noticia.delete()
+    print("SE ELIMINO LA NOTICIA CORRECTAMENTE")
+    
+    return render(request, 'eliminar_noticia.html')
+
 
 #Rutas READ
 # Create your views here.
