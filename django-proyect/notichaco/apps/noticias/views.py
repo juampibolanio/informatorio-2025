@@ -1,8 +1,44 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Autor, Categoria, Noticia
 
-#CREATE
 
+#====================== VISTAS BASADAS EN CLASES ===========================
+
+class TodasLasNoticiasView(ListView):
+    model = Noticia
+    template_name = 'todas_noticias.html'
+    context_object_name = 'noti'
+
+class UnaNoticiaView(DetailView):
+    model = Noticia
+    template_name = 'una_noticia.html'
+    context_object_name = 'noticia'
+    pk_url_kwarg = 'noticia_id'
+
+class CrearNoticiaView(CreateView):
+    model = Noticia
+    template_name = 'nueva_noticia.html'
+    fields = ['titulo', 'subtitulo', 'contenido']
+    success_url = reverse_lazy('todas_las_noticias') #ESTE METODO HAY Q COMPLETAR LA SEMANA Q VIENE, PQ TIENE TEMAS SOBRE FORMULARIOS
+
+class ActualizarNoticiaView(UpdateView):
+    model = Noticia
+    template_name = 'modificar_noticia.html'
+    fields = ['titulo', 'contenido']
+    success_url = reverse_lazy('todas_las_noticias')
+    pk_url_kwarg = 'noticia_id'
+
+class EliminarNoticiaView(DeleteView):
+    model = Noticia
+    template_name = 'eliminar_noticia.html'
+    success_url = reverse_lazy('todas_las_noticias')
+    pk_url_kwarg = 'noticia_id'
+
+#====================== VISTAS BASADAS EN FUNCIONES ========================
+#CREATE
 def crear_noticia(request):
     
     cat = Categoria.objects.get(categoria_id = 1)
@@ -72,7 +108,11 @@ def todas_las_noticias(request):
         print(noticia.subtitulo)
         print(noticia.autor)
 
-    return render(request, 'todas_noticias.html')
+    context = {
+        'noticias' : noticias
+    }
+
+    return render(request, 'todas_noticias.html', context)
 
 def una_noticia(request):
 

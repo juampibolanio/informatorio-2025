@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1>esta es una nueva noticia</h1>
+    <form method="post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- ESTO COMPLETAR LA SEM Q VIENE, AHORA DA ERROR-->
+        <button type="submit">Crear la noticia</button>
+    </form>
 </body>
 </html>

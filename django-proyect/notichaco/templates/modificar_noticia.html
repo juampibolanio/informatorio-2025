@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1>SE EDITO LA NOTICIA YA</h1>
+    <form method="post">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- ESTO COMPLETAR LA SEM Q VIENE, AHORA DA ERROR-->
+        <button type="submit">Modificar la noticia</button>
+    </form>
 </body>
 </html>
