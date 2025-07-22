@@ -8,6 +8,25 @@
 <body>
     <h1>TODAS LAS NOTICIAS PAGINA</h1>
 
-    {{noti}}
+    <form method="GET">
+        <input type="text" name="categoria" placeholder="Buscar categoria..." value = "{{categoria_seleccionada}}">
+        <button type="submit">Buscar noticias</button>
+
+    </form>
+
+    <p>
+        <a href="?categoria=politica">Política</a>
+        <a href="?categoria=espectaculos">Espectáculos</a>
+    </p>
+
+
+    {% for noticia in noticias %}
+    
+        <h3>{{noticia.titulo}}</h3>
+        <h5>{{noticia.subtitulo}}</h5>
+        <p>{{noticia.contenido}}</p>
+        <p>Categorias: {{ noticia.categoria.all|join:', ' }}</p> <!-- Esto es para concatenar, esto me muestra el array de categorias  -->
+        
+    {% endfor %}
 </body>
 </html>
